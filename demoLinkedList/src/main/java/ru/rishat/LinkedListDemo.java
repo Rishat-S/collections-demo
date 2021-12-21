@@ -39,9 +39,7 @@ public class LinkedListDemo<T> implements ListDemo<T> {
 
     @Override
     public void add(int index, T t) {
-        if (index > size) {
-            throw new IndexOutOfBoundsException();
-        }
+        checkIndex(index);
 
         Node node = getNodeOfIndex(index);
 
@@ -56,12 +54,16 @@ public class LinkedListDemo<T> implements ListDemo<T> {
 
     }
 
-    @Override
-    public T get(int index) {
-
+    private void checkIndex(int index) {
         if (index > size) {
             throw new IndexOutOfBoundsException();
         }
+    }
+
+    @Override
+    public T get(int index) {
+
+        checkIndex(index);
 
         if (index == size) {
             return first.element;
@@ -72,21 +74,6 @@ public class LinkedListDemo<T> implements ListDemo<T> {
             return node.element;
         }
 
-        return null;
-    }
-
-    private Node getNodeOfIndex(int index) {
-
-        Node currentNode = last;
-        int currentIndex = 0;
-
-        while (currentNode.previous != null) {
-            if (currentIndex == index) {
-                return currentNode;
-            }
-            currentNode = currentNode.previous;
-            currentIndex++;
-        }
         return null;
     }
 
@@ -121,23 +108,6 @@ public class LinkedListDemo<T> implements ListDemo<T> {
         return true;
     }
 
-    private Node getNodeOfElement(T t) {
-
-        if (first.element.equals(t)) {
-            return first;
-        }
-
-        Node currentNode = last;
-
-        while (currentNode.previous != null) {
-            if (currentNode.element.equals(t)) {
-                return currentNode;
-            }
-            currentNode = currentNode.previous;
-        }
-        return null;
-    }
-
     @Override
     public int indexOf(T t) {
         Node currentNode = last;
@@ -156,5 +126,37 @@ public class LinkedListDemo<T> implements ListDemo<T> {
     @Override
     public int size() {
         return size;
+    }
+
+    private Node getNodeOfIndex(int index) {
+
+        Node currentNode = last;
+        int currentIndex = 0;
+
+        while (currentNode.previous != null) {
+            if (currentIndex == index) {
+                return currentNode;
+            }
+            currentNode = currentNode.previous;
+            currentIndex++;
+        }
+        return null;
+    }
+
+    private Node getNodeOfElement(T t) {
+
+        if (first.element.equals(t)) {
+            return first;
+        }
+
+        Node currentNode = last;
+
+        while (currentNode.previous != null) {
+            if (currentNode.element.equals(t)) {
+                return currentNode;
+            }
+            currentNode = currentNode.previous;
+        }
+        return null;
     }
 }
