@@ -43,6 +43,20 @@ public class LinkedListDemo<T> implements ListDemo<T> {
 
         Node node = getNodeOfIndex(index);
 
+
+        if (node == last) {
+            last = new Node(node, t, null);
+            size++;
+            return;
+        }
+
+        if (node == first) {
+            first = new Node(null, t, first.next);
+            node.previous = first;
+            size++;
+            return;
+        }
+
         Node nodeNext = node.next;
 
         Node newNode = new Node(node, t, nodeNext);
@@ -133,7 +147,7 @@ public class LinkedListDemo<T> implements ListDemo<T> {
         Node currentNode = last;
         int currentIndex = 0;
 
-        while (currentNode.previous != null) {
+        while (currentIndex != size) {
             if (currentIndex == index) {
                 return currentNode;
             }

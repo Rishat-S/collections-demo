@@ -38,6 +38,20 @@ class LinkedListDemoTest {
     }
 
     @Test
+    public void testAddOfIndexFirst() {
+        listDemo.add(listDemo.size()-1, 55);
+        Assertions.assertEquals(101, listDemo.size());
+        Assertions.assertEquals(55, listDemo.get(listDemo.size()-1));
+    }
+
+    @Test
+    public void testAddOfIndexLast() {
+        listDemo.add(0, 55);
+        Assertions.assertEquals(101, listDemo.size());
+        Assertions.assertEquals(55, listDemo.get(0));
+    }
+
+    @Test
     public void removeFirst() {
         listDemo.remove(listDemo.size()-1);
         Assertions.assertEquals(99, listDemo.size());
