@@ -57,6 +57,7 @@ public class LinkedListDemo<T> implements ListDemo<T> {
             return;
         }
 
+        assert node != null;
         Node nodeNext = node.next;
 
         Node newNode = new Node(node, t, nodeNext);
