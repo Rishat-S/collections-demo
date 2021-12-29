@@ -2,7 +2,6 @@ package ru.rishat;
 
 import java.io.Serializable;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class Box<T extends Number & Comparable<T> & Serializable> {
 
@@ -26,7 +25,7 @@ public class Box<T extends Number & Comparable<T> & Serializable> {
 //
 //    }
 
-    public  static void method(List<? extends Number> numbers) {
+    public static void method(List<? extends Number> numbers) {
 
     }
 
@@ -39,7 +38,7 @@ public class Box<T extends Number & Comparable<T> & Serializable> {
         src.clear();
     }
 
-    public int compare (Box<?> another) {
+    public int compare(Box<?> another) {
         if (avg() > another.avg()) {
             return 1;
         } else if (avg() == another.avg()) {
